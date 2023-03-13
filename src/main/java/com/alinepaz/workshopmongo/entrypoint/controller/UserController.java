@@ -6,12 +6,13 @@ import com.alinepaz.workshopmongo.entrypoint.controller.request.UserRequest;
 import com.alinepaz.workshopmongo.entrypoint.controller.response.UserResponse;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,9 @@ public class UserController {
     public ResponseEntity<Void>insertUser(@Valid @RequestBody UserRequest userRequest){
         var user = userMapper.toUser(userRequest);
         insertUserUseCase.insert(user);
-        return ResponseEntity.ok().build();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @GetMapping
@@ -62,11 +65,12 @@ public class UserController {
 
         var user = userMapper.toUser(userRequest);
         updateUserUseCase.update(id, user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>delete(@PathVariable String id){
+        findUserByIdUseCase.findById(id);
         deleteUserUseCase.delete(id);
         return ResponseEntity.noContent().build();
     }
