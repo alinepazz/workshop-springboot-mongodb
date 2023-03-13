@@ -4,7 +4,6 @@ import com.alinepaz.workshopmongo.core.dataprovider.FindUserById;
 import com.alinepaz.workshopmongo.core.domain.User;
 import com.alinepaz.workshopmongo.core.usecase.FindUserByIdUseCase;
 
-import java.util.Optional;
 
 public class FindUserByIdUseCaseImpl implements FindUserByIdUseCase {
 

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 @Data
@@ -20,7 +21,9 @@ public class UserEntity {
     @Id
     private String id;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String email;
 }

@@ -3,15 +3,18 @@ package com.alinepaz.workshopmongo.entrypoint.controller;
 import com.alinepaz.workshopmongo.core.usecase.FindAllUsersUseCase;
 import com.alinepaz.workshopmongo.core.usecase.FindUserByIdUseCase;
 import com.alinepaz.workshopmongo.core.usecase.InsertUserUseCase;
+import com.alinepaz.workshopmongo.core.usecase.UpdateUserUseCase;
 import com.alinepaz.workshopmongo.entrypoint.controller.mapper.UserMapper;
 import com.alinepaz.workshopmongo.entrypoint.controller.request.UserRequest;
 import com.alinepaz.workshopmongo.entrypoint.controller.response.UserResponse;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,8 +33,11 @@ public class UserController {
     @Autowired
     private FindUserByIdUseCase findUserByIdUseCase;
 
+    @Autowired
+    private UpdateUserUseCase updateUserUseCase;
+
     @PostMapping
-    public ResponseEntity<Void>insertUser(@RequestBody UserRequest userRequest){
+    public ResponseEntity<Void>insertUser(@Valid @RequestBody UserRequest userRequest){
         var user = userMapper.toUser(userRequest);
         insertUserUseCase.insert(user);
         return ResponseEntity.ok().build();
@@ -49,5 +55,13 @@ public class UserController {
         var user = findUserByIdUseCase.findById(id);
         var userResponse = userMapper.toUserResponseById(user);
         return ResponseEntity.status(HttpStatus.OK).body(userResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void>update(@Valid @PathVariable String id, @RequestBody UserRequest userRequest){
+
+        var user = userMapper.toUser(userRequest);
+        updateUserUseCase.update(id, user);
+        return ResponseEntity.ok().build();
     }
 }
