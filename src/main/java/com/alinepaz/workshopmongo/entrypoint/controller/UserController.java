@@ -1,9 +1,6 @@
 package com.alinepaz.workshopmongo.entrypoint.controller;
 
-import com.alinepaz.workshopmongo.core.usecase.FindAllUsersUseCase;
-import com.alinepaz.workshopmongo.core.usecase.FindUserByIdUseCase;
-import com.alinepaz.workshopmongo.core.usecase.InsertUserUseCase;
-import com.alinepaz.workshopmongo.core.usecase.UpdateUserUseCase;
+import com.alinepaz.workshopmongo.core.usecase.*;
 import com.alinepaz.workshopmongo.entrypoint.controller.mapper.UserMapper;
 import com.alinepaz.workshopmongo.entrypoint.controller.request.UserRequest;
 import com.alinepaz.workshopmongo.entrypoint.controller.response.UserResponse;
@@ -36,6 +33,9 @@ public class UserController {
     @Autowired
     private UpdateUserUseCase updateUserUseCase;
 
+    @Autowired
+    private DeleteUserUseCase deleteUserUseCase;
+
     @PostMapping
     public ResponseEntity<Void>insertUser(@Valid @RequestBody UserRequest userRequest){
         var user = userMapper.toUser(userRequest);
@@ -63,5 +63,11 @@ public class UserController {
         var user = userMapper.toUser(userRequest);
         updateUserUseCase.update(id, user);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>delete(@PathVariable String id){
+        deleteUserUseCase.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
