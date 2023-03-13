@@ -13,4 +13,6 @@ public interface UserMapper {
     User toUser(UserRequest userRequest);
 
     List<UserResponse> toUserResponse(List<User> users);
+
+    UserResponse toUserResponseById(User user);
 }
