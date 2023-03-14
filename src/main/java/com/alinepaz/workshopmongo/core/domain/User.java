@@ -2,7 +2,6 @@ package com.alinepaz.workshopmongo.core.domain;
 
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class User {
 
