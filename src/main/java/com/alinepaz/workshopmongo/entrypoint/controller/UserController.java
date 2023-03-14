@@ -64,6 +64,7 @@ public class UserController {
     public ResponseEntity<Void>update(@Valid @PathVariable String id, @RequestBody UserRequest userRequest){
 
         var user = userMapper.toUser(userRequest);
+        findUserByIdUseCase.findById(id);
         updateUserUseCase.update(id, user);
         return ResponseEntity.noContent().build();
     }
