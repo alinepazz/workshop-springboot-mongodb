@@ -31,6 +31,9 @@ public class InsertPostImpl implements InsertPost {
         var postEntity = postEntityMapper.toPostEntity(post);
         postEntity.setAuthor(userEntity.get());
         postEntity.setDate(Instant.now().truncatedTo(ChronoUnit.HOURS));
+
         postRepository.save(postEntity);
+        userEntity.get().getPosts().add(postEntity);
+        userRepository.save(userEntity.get());
     }
 }
