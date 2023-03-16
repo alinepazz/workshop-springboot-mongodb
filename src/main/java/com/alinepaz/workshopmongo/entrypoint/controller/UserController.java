@@ -1,8 +1,10 @@
 package com.alinepaz.workshopmongo.entrypoint.controller;
 
 import com.alinepaz.workshopmongo.core.usecase.*;
+import com.alinepaz.workshopmongo.entrypoint.controller.mapper.PostMapper;
 import com.alinepaz.workshopmongo.entrypoint.controller.mapper.UserMapper;
 import com.alinepaz.workshopmongo.entrypoint.controller.request.UserRequest;
+import com.alinepaz.workshopmongo.entrypoint.controller.response.PostResponse;
 import com.alinepaz.workshopmongo.entrypoint.controller.response.UserResponse;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PostMapper postMapper;
 
     @Autowired
     private InsertUserUseCase insertUserUseCase;
@@ -74,5 +79,12 @@ public class UserController {
         findUserByIdUseCase.findById(id);
         deleteUserUseCase.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<PostResponse>>findPosts(@PathVariable String id){
+        var user = findUserByIdUseCase.findById(id);
+        var postResponse = postMapper.toUserResponse(user.getPosts());
+        return ResponseEntity.status(HttpStatus.OK).body(postResponse);
     }
 }
