@@ -1,7 +1,6 @@
 package com.alinepaz.workshopmongo.core.domain;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.Objects;
 
 public class Post {

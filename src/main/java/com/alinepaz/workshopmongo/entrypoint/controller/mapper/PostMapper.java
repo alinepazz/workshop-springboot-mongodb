@@ -4,6 +4,7 @@ import com.alinepaz.workshopmongo.core.domain.Post;
 import com.alinepaz.workshopmongo.core.domain.User;
 import com.alinepaz.workshopmongo.entrypoint.controller.request.PostRequest;
 import com.alinepaz.workshopmongo.entrypoint.controller.request.UserRequest;
+import com.alinepaz.workshopmongo.entrypoint.controller.response.PostResponse;
 import com.alinepaz.workshopmongo.entrypoint.controller.response.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,7 +19,7 @@ public interface PostMapper {
     @Mapping(target = "date", ignore = true)
     Post toPost(PostRequest postRequest);
 
-//    List<UserResponse> toUserResponse(List<User> users);
+   List<PostResponse> toPostResponse(List<Post> posts);
 //
 //    UserResponse toUserResponseById(User user);
 }

@@ -1,7 +1,10 @@
 package com.alinepaz.workshopmongo.core.domain;
 
 
-import java.util.Objects;
+import com.alinepaz.workshopmongo.dataprovider.repository.entity.PostEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -11,13 +14,16 @@ public class User {
 
     private String email;
 
+    private List<Post> posts = new ArrayList<>();
+
     public User(){
     }
 
-    public User(String id, String name, String email) {
+    public User(String id, String name, String email, List<Post> posts) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.posts = posts;
     }
 
     public String getId() {
@@ -44,16 +50,11 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

@@ -1,27 +1,22 @@
-package com.alinepaz.workshopmongo.dataprovider.repository.entity;
+package com.alinepaz.workshopmongo.entrypoint.controller.response;
 
 import com.alinepaz.workshopmongo.core.domain.Author;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.util.Date;
 
-
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
-public class PostEntity {
+public class PostResponse {
 
     private String id;
     private Instant date;
     private String title;
     private String body;
-    private AuthorEntity author;
+    private Author author;
 }

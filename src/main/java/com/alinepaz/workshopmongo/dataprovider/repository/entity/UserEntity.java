@@ -23,11 +23,7 @@ public class UserEntity {
 
     @Id
     private String id;
-
-    @NotBlank
     private String name;
-
-    @NotBlank
     private String email;
 
     @DBRef(lazy = true)

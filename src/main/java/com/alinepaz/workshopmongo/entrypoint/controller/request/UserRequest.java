@@ -14,9 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserRequest {
 
-    @NotBlank
     private String name;
-    @NotBlank
+
     private String email;
 
 }
