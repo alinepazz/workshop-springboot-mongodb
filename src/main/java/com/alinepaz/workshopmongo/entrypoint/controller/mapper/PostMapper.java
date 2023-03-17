@@ -20,6 +20,6 @@ public interface PostMapper {
     Post toPost(PostRequest postRequest);
 
    List<PostResponse> toPostResponse(List<Post> posts);
-//
-//    UserResponse toUserResponseById(User user);
+
+     PostResponse toPostResponseById(Post post);
 }
