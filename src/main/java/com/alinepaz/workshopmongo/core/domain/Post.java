@@ -1,6 +1,7 @@
 package com.alinepaz.workshopmongo.core.domain;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 public class Post {
@@ -62,4 +63,16 @@ public class Post {
         this.author = author;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(id, post.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

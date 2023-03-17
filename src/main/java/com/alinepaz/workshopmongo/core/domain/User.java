@@ -1,7 +1,6 @@
 package com.alinepaz.workshopmongo.core.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Objects;
 
 public class User {
@@ -12,16 +11,13 @@ public class User {
 
     private String email;
 
-    private List<Post> posts = new ArrayList<>();
-
     public User(){
     }
 
-    public User(String id, String name, String email, List<Post>posts) {
+    public User(String id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.posts = posts;
     }
 
     public String getId() {
@@ -46,14 +42,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
     }
 
     @Override
