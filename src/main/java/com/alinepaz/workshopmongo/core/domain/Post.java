@@ -9,12 +9,12 @@ public class Post {
     private Instant date;
     private String title;
     private String body;
-    private User author;
+    private Author author;
 
 
     public Post(){}
 
-    public Post(String id, Instant date, String title, String body, User author) {
+    public Post(String id, Instant date, String title, String body, Author author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -54,11 +54,11 @@ public class Post {
         this.body = body;
     }
 
-    public User getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 

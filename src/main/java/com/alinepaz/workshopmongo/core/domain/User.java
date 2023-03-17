@@ -1,8 +1,5 @@
 package com.alinepaz.workshopmongo.core.domain;
 
-
-import com.alinepaz.workshopmongo.dataprovider.repository.entity.PostEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 
